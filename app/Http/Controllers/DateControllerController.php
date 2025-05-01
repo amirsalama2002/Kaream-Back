@@ -56,10 +56,10 @@ class DateControllerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DateController $dateController)
+    public function show(DateController $date)
     {
         //
-        $date = $dateController::all();
+ 
         return view('date.show', compact('date'));
     }
 
@@ -76,7 +76,7 @@ class DateControllerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DateController $dateController)
+    public function update(Request $request, DateController $date)
     {
         $request->validate([
             'title' => 'required',
@@ -95,7 +95,7 @@ class DateControllerController extends Controller
             $data['pdf_file'] = $request->file('pdf_file')->store('pdfs', 'public');
         }
 
-        $dateController->update($data);
+        $date->update($data);
 
         return redirect()->route('date.index')->with('success', 'Book updated!');
     }
@@ -103,10 +103,10 @@ class DateControllerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DateController $dateController)
+    public function destroy(DateController $date)
     {
         {
-            $dateController->delete();
+            $date->delete();
             return redirect()->route('date.index')->with('success', 'Book deleted!');
         }
     }

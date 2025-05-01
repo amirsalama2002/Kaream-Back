@@ -3,10 +3,10 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Date List</h1>
-        <a href="{{ route('novels.create') }}" class="btn btn-primary">Add New Date</a>
+        <a href="{{ route('falcon.create') }}" class="btn btn-primary">Add New Date</a>
     </div>
 
-    @foreach ($books as $book)
+    @foreach ($falcon as $book)
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{ $book->title }}</h5>
@@ -19,14 +19,13 @@
                         <a href="{{ asset('storage/' . $book->pdf_file) }}" class="btn btn-sm btn-secondary" target="_blank">View PDF</a>
                     @endif
                 </div>
-                <a href="{{ route('novels.show', $book->id) }}" class="btn btn-sm btn-info">Show</a>
-                <a href="{{ route('novels.edit', $book->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                <form action="{{ route('novels.destroy', $book->id) }}" method="POST" class="d-inline">
+                <a href="{{ route('falcon.show', $book->id) }}" class="btn btn-sm btn-info">Show</a>
+                <a href="{{ route('falcon.edit', $book->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="{{ route('falcon.destroy', $book->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
-                
             </div>
         </div>
     @endforeach

@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Novels;
+use App\Models\Falcon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-
-class NovelsController extends Controller
+class FalconController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $books = Novels::all();
-        return view('novels.index', compact('books'));
+        $falcon = Falcon::all();
+        return view('falcon.index', compact('falcon'));
     }
 
     /**
@@ -24,7 +23,7 @@ class NovelsController extends Controller
     public function create()
     {
         //
-        return view('novels.create');
+        return view('falcon.create');
     }
 
     /**
@@ -49,33 +48,35 @@ class NovelsController extends Controller
             $data['pdf_file'] = $request->file('pdf_file')->store('pdfs', 'public');
         }
 
-        Novels::create($data);
+        Falcon::create($data);
 
-        return redirect()->route('novels.index')->with('success', 'Date added!');
+        return redirect()->route('falcon.index')->with('success', 'Date added!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Novels $novel)
+    public function show(Falcon $falcon)
     {
         //
-        return view('novels.show', compact('novel'));
+ 
+        return view('falcon.show', compact('falcon'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Novels $novel)
+    public function edit(Falcon $falcon)
     {
         //
-        return view('novels.edit', compact('novel'));
+       
+    return view('falcon.edit', compact('falcon'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Novels $Novel)
+    public function update(Request $request, Falcon $falcon)
     {
         $request->validate([
             'title' => 'required',
@@ -94,19 +95,19 @@ class NovelsController extends Controller
             $data['pdf_file'] = $request->file('pdf_file')->store('pdfs', 'public');
         }
 
-        $Novel->update($data);
+        $falcon->update($data);
 
-        return redirect()->route('novels.index')->with('success', 'Book updated!');
+        return redirect()->route('falcon.index')->with('success', 'Book updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Novels $novel)
+    public function destroy(Falcon $falcon)
     {
-        $novel->delete();
-        return redirect()->route('novels.index')->with('success', 'Book deleted!');
+        {
+            $falcon->delete();
+            return redirect()->route('falcon.index')->with('success', 'Book deleted!');
+        }
     }
-    
-
 }
